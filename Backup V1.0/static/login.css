@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg-color: #f4f7fa;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #777777;
+    --primary-color: #4361ee;
+    --primary-hover: #3a53d0;
+    --input-border: #e0e0e0;
+    --input-focus: #4361ee;
+    --error-bg: #ffebee;
+    --error-text: #c62828;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --card-bg: #1e1e1e;
+        --text-main: #f0f0f0;
+        --text-muted: #a0a0a0;
+        --input-border: #333333;
+        --error-bg: #3c1414;
+        --error-text: #ff8a80;
+    }
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Inter', sans-serif; 
+}
+
+body { 
+    background-color: var(--bg-color); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    color: var(--text-main); 
+}
+
+.login-container { 
+    width: 100%; 
+    max-width: 400px; 
+    padding: 20px; 
+}
+
+.login-box { 
+    background-color: var(--card-bg); 
+    padding: 40px 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); 
+}
+
+.login-header { text-align: center; margin-bottom: 30px; }
+.logo { max-width: 120px; margin-bottom: 15px; }
+.login-header h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.login-header p { font-size: 14px; color: var(--text-muted); }
+
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.input-wrapper { position: relative; display: flex; align-items: center; }
+.input-icon { position: absolute; left: 14px; font-size: 20px; color: var(--text-muted); }
+
+.input-wrapper input { 
+    width: 100%; 
+    padding: 12px 14px 12px 42px; 
+    border: 1px solid var(--input-border); 
+    border-radius: 8px; 
+    font-size: 14px; 
+    background-color: transparent; 
+    color: var(--text-main); 
+    transition: all 0.3s; 
+}
+.input-wrapper input:focus { 
+    outline: none; 
+    border-color: var(--input-focus); 
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15); 
+}
+
+.toggle-password { 
+    position: absolute; 
+    right: 14px; 
+    font-size: 20px; 
+    color: var(--text-muted); 
+    cursor: pointer; 
+    transition: color 0.3s; 
+}
+.toggle-password:hover { color: var(--text-main); }
+
+.btn-login { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px; 
+    transition: 0.3s; 
+    margin-top: 10px; 
+}
+.btn-login:hover { background-color: var(--primary-hover); }
+.btn-login:disabled { background-color: #a0a0a0; cursor: not-allowed; }
+
+/* Styling Khusus Tombol Guest */
+.btn-guest { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: #e0e0e0; 
+    color: #333; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px; 
+    transition: 0.3s; 
+    margin-top: 12px; 
+}
+.btn-guest:hover { background-color: #d5d5d5; }
+
+@media (prefers-color-scheme: dark) {
+    .btn-guest { background-color: #333; color: #f0f0f0; }
+    .btn-guest:hover { background-color: #444; }
+}
+.btn-guest:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.alert { 
+    padding: 12px 15px; 
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+    font-size: 14px; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.alert-error { background-color: var(--error-bg); color: var(--error-text); border: 1px solid #ffcdd2; }
+.alert-success { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.login-footer { text-align: center; margin-top: 30px; font-size: 12px; color: var(--text-muted); }

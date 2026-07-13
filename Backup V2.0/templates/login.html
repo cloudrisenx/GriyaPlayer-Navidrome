@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280">
+    <title>Music Player - Login</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='gp.png') }}">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}?v=2.0">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="{{ url_for('static', filename='logogpbandungan.png') }}" alt="Logo" class="logo" onerror="this.style.display='none'">
+                <h2>Music</h2>
+                <p>Silakan login untuk melanjutkan</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <i class='bx bx-error-circle'></i> {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('login') }}" method="POST" id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <div class="input-wrapper">
+                        <i class='bx bx-user input-icon'></i>
+                        <input type="text" id="username" name="username" placeholder="Masukkan username" required autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class='bx bx-lock-alt input-icon'></i>
+                        <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                        <i class='bx bx-hide toggle-password' id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    Masuk <i class='bx bx-log-in-circle'></i>
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>&copy; 2026 GP Bandungan IT Department</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='login.js') }}?v=2.0"></script>
+</body>
+</html>

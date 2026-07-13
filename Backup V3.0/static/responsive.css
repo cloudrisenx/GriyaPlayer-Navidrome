@@ -1,0 +1,188 @@
+/*
+  File ini merombak total layout GriyaPlayer agar berfungsi 100%
+  di layar HP dan Tablet.
+*/
+
+/* =================================================================== */
+/* PERBAIKAN SCROLL SIDEBAR GLOBAL (Desktop & Mobile)                  */
+/* =================================================================== */
+.sidebar {
+    overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; }
+
+/* --- Aturan ini berlaku untuk semua layar di bawah 1024px (Tablet & HP) --- */
+@media (max-width: 1024px) {
+    
+    /* =================================================================== */
+    /* LANGKAH 1: PERBAIKI STRUKTUR UTAMA & ATASI BUG CHROME               */
+    /* =================================================================== */
+    body {
+        /* Hapus layout grid 2 baris, biarkan player-bar "melayang" */
+        grid-template-rows: 1fr;
+        height: 100dvh; /* Perbaikan khusus untuk address bar Google Chrome Mobile */
+    }
+
+    .main-container {
+        /* Hapus layout 2 kolom, jadikan 1 kolom agar konten tidak terpotong */
+        grid-template-columns: 1fr;
+        /* Mencegah daftar lagu membesar dan menendang player bar keluar layar (Grid Blowout) */
+        min-height: 0; 
+    }
+
+    .sidebar {
+        /* Ubah sidebar menjadi menu melayang (off-canvas) di sebelah kiri */
+        position: fixed;
+        top: 0;
+        left: -300px; /* Sembunyikan di luar layar */
+        width: 260px;
+        height: 100%;
+        z-index: 9999;
+        transition: left 0.3s ease;
+        border-radius: 0;
+        padding-left: calc(12px + env(safe-area-inset-left)); /* Area aman kamera */
+        padding-bottom: calc(40px + env(safe-area-inset-bottom)); /* Jarak aman di bawah menu */
+    }
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-playlists {
+        flex: none; /* Biarkan tinggi menu natural agar seluruh sidebar bisa di-scroll */
+        overflow-y: visible;
+    }
+
+    .content {
+        padding: 16px;
+        padding-bottom: calc(150px + env(safe-area-inset-bottom)) !important;
+        padding-left: calc(16px + env(safe-area-inset-left));
+        padding-right: calc(16px + env(safe-area-inset-right));
+    }
+
+    .header-title {
+        font-size: 28px;
+    }
+    
+    #mobileMenuBtn {
+        display: block !important;
+    }
+
+    #sidebarOverlay.active {
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
+
+    /* =================================================================== */
+    /* LANGKAH 2: JADIKAN PLAYER BAR "MELAYANG" (FIXED) DI BAWAH           */
+    /* =================================================================== */
+    .player-bar {
+        /* Lepaskan dari alur dokumen dan tempel di bawah */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+
+        display: flex;
+        flex-wrap: nowrap; /* Jangan turun baris di landscape, pertahankan 1 garis */
+        height: 85px;
+        padding: 4px calc(16px + env(safe-area-inset-right)) env(safe-area-inset-bottom) calc(16px + env(safe-area-inset-left));
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background: #000;
+        border-top: 1px solid #222;
+    }
+
+    .controls {
+        order: 0;
+        width: auto;
+        flex: 1;
+    }
+
+    .track-info {
+        order: 0;
+        flex-grow: 0;
+        min-width: 150px;
+    }
+    .track-info img {
+        width: 48px;
+        height: 48px;
+    }
+    .track-info div div:first-child {
+        font-size: 13px;
+    }
+    .track-info div div:last-child {
+        font-size: 11px;
+    }
+
+    .volume-container {
+        order: 0;
+        padding-right: 0;
+    }
+
+    /* =================================================================== */
+    /* LANGKAH 4: PANEL ANTRIAN (QUEUE) FIT TO SCREEN & FIX BUG CLOSE      */
+    /* =================================================================== */
+    .side-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        z-index: 99999; /* Posisi teratas menutupi player-bar */
+        border-radius: 0;
+        transform: translateX(100%);
+        visibility: hidden;
+        padding-left: calc(24px + env(safe-area-inset-left));
+        padding-right: calc(24px + env(safe-area-inset-right));
+        transition: transform 0.3s ease, visibility 0s 0.3s;
+    }
+    .side-panel.open {
+        transform: translateX(0);
+        visibility: visible;
+        transition: transform 0.3s ease, visibility 0s 0s;
+    }
+
+    /* =================================================================== */
+    /* LANGKAH 3: PENYESUAIAN UNTUK LAYAR HP SANGAT KECIL (< 767px)        */
+    /* =================================================================== */
+    @media (max-width: 767px) and (orientation: portrait) {
+        /* Hanya turun baris (wrap) jika HP sedang berdiri (Portrait) */
+        .player-bar {
+            flex-wrap: wrap;
+            padding: 12px calc(12px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left));
+        }
+        .controls { order: 1; width: 100%; flex: none; }
+        .track-info { order: 2; flex-grow: 1; }
+        .volume-container { order: 3; }
+        
+        .controls .ctrl-btns {
+            gap: 16px;
+        }
+        .play-main-btn {
+            font-size: 40px;
+        }
+        .ctrl-btns .bx-shuffle,
+        .ctrl-btns .bx-repeat,
+        #volumeIcon,
+        #volumeSlider {
+            display: none;
+        }
+    }
+    
+    /* Perbaikan Khusus Landscape: Player Bar Tipis 1 Baris */
+    @media (max-height: 500px) and (orientation: landscape) {
+        .player-bar {
+            height: 65px;
+            padding-top: 4px;
+            padding-bottom: calc(4px + env(safe-area-inset-bottom));
+        }
+        .track-info img { width: 40px; height: 40px; }
+        #volumeIcon, #volumeSlider { display: none; }
+    }
+}

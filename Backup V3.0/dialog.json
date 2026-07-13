@@ -1,0 +1,49 @@
+{
+    "playlists": [
+        {
+            "name": "Pagi",
+            "songs": [
+                "b5mTM1cCBfr6GGLkFmd8FA",
+                "hUTtzfRx6lU6rxBs44J5aI",
+                "p8Cu0ya4R6QmulIZu7EgPZ"
+            ]
+        },
+        {
+            "name": "Siang",
+            "songs": [
+                "ilVlZBXAVqhljCZ6miF2nN",
+                "ExnBnZjKdVzWBmxKiQ29Bg",
+                "wMujS7p35OgA0QPIWW0tm0",
+                "7N2M6Z6dgcKGRsM7ZkjCtF",
+                "XBwFT0HYdzBIC411lP2pfR"
+            ]
+        },
+        {
+            "name": "Sore",
+            "songs": [
+                "zISsy3eS747Q0BMvMhuRS0",
+                "IYSf8Srh1YkianXcTEXzsq",
+                "clwb5WpVvJ5WbOseOlB4lp",
+                "6KJQgdahB9B2mKCQmimv1K"
+            ]
+        },
+        {
+            "name": "Malam",
+            "songs": [
+                "ZlelzMSjrtE9VdbbCAp5We",
+                "2aQNPF36n9WZ9ItWQsgrJQ",
+                "m2tfIosxP9PdxmZWuXLuLF",
+                "4GVF0yl5Odb77MQLN1w3n6",
+                "QqguwcIL1hgW58KLgwRPtt",
+                "3EhelUyeOKQEJfLSug68jh",
+                "EuPoJ4yog8rHkGoxvEzGGJ"
+            ]
+        },
+        {
+            "name": "Friday",
+            "songs": [
+                "PQEc7ii5GMWOf44fE8HGV3"
+            ]
+        }
+    ]
+}

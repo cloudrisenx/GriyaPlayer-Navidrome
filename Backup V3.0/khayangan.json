@@ -1,0 +1,29 @@
+{
+    "playlists": [
+        {
+            "name": "Pagi",
+            "songs": [
+                "DKAq961AGeVtXa28SsnytQ",
+                "TaOuB5WIVYYJqbYcyt2Nj0",
+                "yfLwMh5o2cZ7IBfnuk0R6X",
+                "WSLUggdRSMABWoi0lZ8kU1",
+                "rMsmvaLndTx50TMYmGgo3o",
+                "hthxmqD76OkpANQV1KpVq6"
+            ]
+        },
+        {
+            "name": "Siang",
+            "songs": [
+                "TaOuB5WIVYYJqbYcyt2Nj0",
+                "WSLUggdRSMABWoi0lZ8kU1"
+            ]
+        },
+        {
+            "name": "Malam",
+            "songs": [
+                "SjFjK5K4C5bmigkPBQHcPp",
+                "xGazq9hyZJZVlVkhmjQvVH"
+            ]
+        }
+    ]
+}

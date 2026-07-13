@@ -1,0 +1,128 @@
+/*
+  File ini merombak total layout GriyaPlayer agar berfungsi 100%
+  di layar HP dan Tablet.
+*/
+
+/* --- Aturan ini berlaku untuk semua layar di bawah 1024px (Tablet & HP) --- */
+@media (max-width: 1024px) {
+    
+    /* =================================================================== */
+    /* LANGKAH 1: PERBAIKI STRUKTUR UTAMA & ATASI BUG CHROME               */
+    /* =================================================================== */
+    body {
+        /* Hapus layout grid 2 baris, biarkan player-bar "melayang" */
+        grid-template-rows: 1fr;
+        height: 100dvh; /* Perbaikan khusus untuk address bar Google Chrome Mobile */
+    }
+
+    .main-container {
+        /* Hapus layout 2 kolom, jadikan 1 kolom agar konten tidak terpotong */
+        grid-template-columns: 1fr;
+        /* Mencegah daftar lagu membesar dan menendang player bar keluar layar (Grid Blowout) */
+        min-height: 0; 
+    }
+
+    .sidebar {
+        /* Ubah sidebar menjadi menu melayang (off-canvas) di sebelah kiri */
+        position: fixed;
+        top: 0;
+        left: -300px; /* Sembunyikan di luar layar */
+        width: 280px;
+        height: 100vh;
+        z-index: 9999;
+        transition: left 0.3s ease;
+        border-radius: 0;
+    }
+    .sidebar.open {
+        left: 0;
+    }
+
+    .content {
+        padding: 16px;
+        /* Beri ruang di bawah agar konten terakhir tidak tertutup player bar */
+        padding-bottom: 150px !important;
+    }
+
+    .header-title {
+        font-size: 28px;
+    }
+    
+    #mobileMenuBtn {
+        display: block !important;
+    }
+
+    #sidebarOverlay.active {
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
+
+    /* =================================================================== */
+    /* LANGKAH 2: JADIKAN PLAYER BAR "MELAYANG" (FIXED) DI BAWAH           */
+    /* =================================================================== */
+    .player-bar {
+        /* Lepaskan dari alur dokumen dan tempel di bawah */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+
+        /* Gunakan flexbox agar bisa turun baris */
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background: #000;
+        border-top: 1px solid #222;
+    }
+
+    .controls {
+        /* Kontrol utama (Play, slider) jadi baris pertama, lebar penuh */
+        order: 1;
+        width: 100%;
+    }
+
+    .track-info {
+        /* Info lagu jadi baris kedua, di kiri */
+        order: 2;
+        flex-grow: 1;
+        min-width: 180px;
+    }
+    .track-info img {
+        width: 48px;
+        height: 48px;
+    }
+    .track-info div div:first-child {
+        font-size: 13px;
+    }
+    .track-info div div:last-child {
+        font-size: 11px;
+    }
+
+    .volume-container {
+        /* Volume & Mode jadi baris kedua, di kanan */
+        order: 3;
+        padding-right: 0;
+    }
+
+    /* =================================================================== */
+    /* LANGKAH 3: PENYESUAIAN UNTUK LAYAR HP SANGAT KECIL (< 767px)        */
+    /* =================================================================== */
+    @media (max-width: 767px) {
+        .controls .ctrl-btns {
+            gap: 16px;
+        }
+        .play-main-btn {
+            font-size: 40px;
+        }
+        .ctrl-btns .bx-shuffle,
+        .ctrl-btns .bx-repeat,
+        .volume-container {
+            display: none;
+        }
+    }
+}

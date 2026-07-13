@@ -1,0 +1,20 @@
+nohup: ignoring input
+Mengaktifkan Virtual Environment...
+Menjalankan GriyaPlayer Web Server dengan Gunicorn...
+[2026-03-25 08:51:16 +0000] [19354] [INFO] Starting gunicorn 25.2.0
+[2026-03-25 08:51:16 +0000] [19354] [INFO] Listening at: http://0.0.0.0:7777 (19354)
+[2026-03-25 08:51:16 +0000] [19354] [INFO] Using worker: gthread
+[2026-03-25 08:51:16 +0000] [19355] [INFO] Booting worker with pid: 19355
+[2026-03-25 08:51:16 +0000] [19356] [INFO] Booting worker with pid: 19356
+[2026-03-25 08:51:17 +0000] [19358] [INFO] Booting worker with pid: 19358
+[2026-03-25 08:51:17 +0000] [19357] [INFO] Booting worker with pid: 19357
+[2026-03-25 08:51:17 +0000] [19354] [INFO] Control socket listening at /run/user/1000/gunicorn.ctl
+[2026-03-25 08:52:22 +0000] [19354] [INFO] Handling signal: term
+[2026-03-25 08:52:22 +0000] [19355] [INFO] Worker exiting (pid: 19355)
+[2026-03-25 08:52:22 +0000] [19356] [INFO] Worker exiting (pid: 19356)
+[2026-03-25 08:52:22 +0000] [19358] [INFO] Worker exiting (pid: 19358)
+[2026-03-25 08:52:22 +0000] [19357] [INFO] Worker exiting (pid: 19357)
+[2026-03-25 08:52:23 +0000] [19354] [INFO] Worker (pid:19355) was sent SIGTERM!
+[2026-03-25 08:52:23 +0000] [19354] [INFO] Worker (pid:19356) was sent SIGTERM!
+[2026-03-25 08:52:23 +0000] [19354] [INFO] Worker (pid:19357) was sent SIGTERM!
+[2026-03-25 08:52:23 +0000] [19354] [INFO] Shutting down: Master

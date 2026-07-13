@@ -1,0 +1,27 @@
+[0;1;32m●[0m mpd-fo.service - Music Player Daemon khusus fo
+     Loaded: loaded (]8;;file://engoto/etc/systemd/system/mpd-fo.service/etc/systemd/system/mpd-fo.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Tue 2026-03-31 04:00:31 UTC; 3s ago
+   Main PID: 99357 (mpd)
+      Tasks: 7 (limit: 5803)
+     Memory: 143.8M (peak: 146.3M)
+        CPU: 471ms
+     CGroup: /system.slice/mpd-fo.service
+             └─[0;38;5;245m99357 /usr/bin/mpd --no-daemon /etc/mpd_fo.conf[0m
+
+Mar 31 04:00:31 engoto systemd[1]: Started mpd-fo.service - Music Player Daemon khusus fo.
+Mar 31 04:00:32 engoto mpd[99357]: config_file: config parameter "buffer_before_play" on line 11 is deprecated
+Mar 31 04:00:32 engoto mpd[99357]: Mar 31 04:00 : decoder: Decoder plugin 'wildmidi' is unavailable: configuration file does not exist: /etc/timidity/timidity.cfg
+
+[0;1;32m●[0m mpd-vgm.service - Music Player Daemon khusus vgm
+     Loaded: loaded (]8;;file://engoto/etc/systemd/system/mpd-vgm.service/etc/systemd/system/mpd-vgm.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Tue 2026-03-31 04:00:31 UTC; 3s ago
+   Main PID: 99358 (mpd)
+      Tasks: 3 (limit: 5803)
+     Memory: 13.0M (peak: 13.2M)
+        CPU: 139ms
+     CGroup: /system.slice/mpd-vgm.service
+             └─[0;38;5;245m99358 /usr/bin/mpd --no-daemon /etc/mpd_vgm.conf[0m
+
+Mar 31 04:00:31 engoto systemd[1]: Started mpd-vgm.service - Music Player Daemon khusus vgm.
+Mar 31 04:00:32 engoto mpd[99358]: config_file: config parameter "buffer_before_play" on line 11 is deprecated
+Mar 31 04:00:32 engoto mpd[99358]: Mar 31 04:00 : decoder: Decoder plugin 'wildmidi' is unavailable: configuration file does not exist: /etc/timidity/timidity.cfg
