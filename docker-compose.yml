@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  griyaplayer:
+    build: .
+    container_name: griyaplayer-app
+    restart: always
+    ports:
+      # Nginx Gateway
+      - "80:80"
+      # MPD Web Streams (Direct HTTP Players)
+      - "8000-8012:8000-8012"
+      # Snapcast TCP Streams (Physical Client Speakers)
+      - "1750-1762:1750-1762"
+    volumes:
+      # Sinkronisasi folder kerja untuk file playlist JSON dan logs
+      - .:/var/www/navidrome/web
+      # Mount folder musik Navidrome secara relatif
+      - ./music:/var/www/navidrome/music:ro
+      - ./music_compressed:/var/www/navidrome/music_compressed
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome-server
+    restart: unless-stopped
+    ports:
+      - "4533:4533"
+    environment:
+      # Navidrome settings
+      ND_MUSICFOLDER: "/music"
+      ND_SCANSCHEDULE: "1m"
+      ND_LOGLEVEL: "info"
+      ND_SESSIONTIMEOUT: "24h"
+    volumes:
+      - ./navidrome_data:/data
+      - ./music:/music:ro
+
+

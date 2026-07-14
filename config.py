@@ -4,7 +4,7 @@
 SECRET_KEY = 'gp_bandungan_2026'
 
 # --- KONFIGURASI NAVIDROME ---
-NAVIDROME_URL = "http://192.168.4.40:4533"
+NAVIDROME_URL = "http://navidrome:4533"
 
 # --- PEMETAAN USER & MESIN MPD (MULTI-TENANT) ---
 # Format: 'username': {'mpd_port': port_kontrol, 'stream_port': port_suara_web}

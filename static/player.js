@@ -3,8 +3,8 @@ let currentSongs = [];
 let songCache = {}; 
 let isFetchingCache = {}; 
 
-const NAVIDROME = "http://192.168.4.40:4533";
-const MPD_STREAM = `http://192.168.4.40:${STREAM_PORT}`; 
+const NAVIDROME = window.location.protocol + "//" + window.location.hostname + ":4533";
+const MPD_STREAM = window.location.protocol + "//" + window.location.hostname + ":" + STREAM_PORT; 
 
 // ================ DUAL AUDIO ENGINE ================
 let audio1 = document.getElementById('web-audio');

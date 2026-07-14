@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+
+# Logs and runtime state
+*.log
+web_player.log
+interrupt_state.json
+antrian/
+static/uploads/
+
+# User playlist files (saved as [username].json in root)
+*.json
+
+# Docker & Navidrome Persistent Data
+navidrome_data/
+music/
+music_compressed/
+.DS_Store
+Thumbs.db
