@@ -204,7 +204,7 @@ function fetchMissingMetadata(ids) {
             isFetchingCache[id] = true;
             fetch(`${NAVIDROME}/rest/getSong.view?id=${id}&u=${currentAuth.u}&t=${currentAuth.t}&s=${currentAuth.s}&v=1.12.0&c=GP&f=json`)
             .then(r => {
-                if (r.status === 401) { window.location.replace('/'); return {}; }
+                if (r.status === 401) { window.location.replace(BASE_URL + '/'); return {}; }
                 return r.json();
             })
             .then(d => {
@@ -226,7 +226,7 @@ function fetchMissingMetadata(ids) {
 
 async function doLogout() {
     await fetch('logout', { method: 'POST' });
-    window.location.replace('/'); 
+    window.location.replace(BASE_URL + '/'); 
 }
 
 function togglePlayMode() {
@@ -517,7 +517,7 @@ async function sendTTSBroadcast() {
 async function loadSidebarPlaylists() {
     try {
         const fetchRes = await fetch('api/playlists');
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
         if(res.status === "success" && res.data) {
             const html = res.data.map(p => `
@@ -536,7 +536,7 @@ async function searchHomeSongs() {
     if(!query) { loadLibrary(); return; }
     try {
         const fetchRes = await fetch(`api/search?q=${encodeURIComponent(query)}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         if(res.status === "success") {
@@ -566,7 +566,7 @@ async function fetchMoreHomeSongs() {
 
     try {
         const fetchRes = await fetch(`api/songs?page=${homePage}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         
         const res = await fetchRes.json();
         if(res.status === "success") {
@@ -634,7 +634,7 @@ async function loadAlbums() {
     document.getElementById('dynamic-content').innerHTML = `<p style="text-align:center; padding:40px;"><i class='bx bx-loader-alt bx-spin' style="font-size:24px; color:var(--muted)"></i></p>`;
     try {
         const fetchRes = await fetch('api/albums');
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
         if(res.status === "success") {
             currentAuth = res.auth;
@@ -651,7 +651,7 @@ async function openAlbum(albumId, albumName) {
     document.getElementById('dynamic-content').innerHTML = `<p style="text-align:center; padding:40px;"><i class='bx bx-loader-alt bx-spin' style="font-size: 24px; color:var(--muted)"></i></p>`;
     try {
         const fetchRes = await fetch(`api/album/${albumId}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
         if(res.status === "success") {
             currentSongs = res.data;
@@ -673,7 +673,7 @@ async function loadPlaylists() {
     
     try {
         const fetchRes = await fetch('api/playlists');
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         if(res.status === "success" && res.data.length > 0) {
@@ -740,7 +740,7 @@ async function openPlaylist(name) {
 
     try {
         const fetchRes = await fetch(`api/playlist/get?name=${encodeURIComponent(name)}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         currentSongs = (res.status === "success") ? res.data : [];
@@ -795,7 +795,7 @@ async function searchForPlaylist(playlistName) {
     document.getElementById('plSearchResults').innerHTML = `<p style="color:var(--muted)"><i class='bx bx-loader-alt bx-spin'></i> Mencari...</p>`;
     try {
         const fetchRes = await fetch(`api/search?q=${encodeURIComponent(query)}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         if(res.status === "success" && res.data.length > 0) {
@@ -829,7 +829,7 @@ async function promptAddToPlaylistModal(songId) {
 
     try {
         const fetchRes = await fetch('api/playlists');
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         if (res.status === "success" && res.data.length > 0) {
@@ -1441,7 +1441,7 @@ async function cmd(method) {
         // 1. Cek Interupsi Terlebih Dahulu
         try {
             const fetchRes = await fetch('api/mpd/sync');
-            if (fetchRes.status === 401) { window.location.replace('/'); return; }
+            if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
             const res = await fetchRes.json();
             
             if (res.status === "success" && res.interrupt) {
@@ -1767,7 +1767,7 @@ async function loadOutlets() {
     
     try {
         const fetchRes = await fetch('api/outlet/list');
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
         
         if(res.status === "success" && res.data.length > 0) {
@@ -1796,7 +1796,7 @@ async function loadOutletPlaylists(targetUser, targetName) {
     
     try {
         const fetchRes = await fetch(`api/outlet/playlists?user=${targetUser}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         if(res.status === "success" && res.data.length > 0) {
@@ -1831,7 +1831,7 @@ async function openOutletPlaylist(targetUser, targetName, playlistName) {
 
     try {
         const fetchRes = await fetch(`api/outlet/playlist/get?user=${targetUser}&name=${encodeURIComponent(playlistName)}`);
-        if (fetchRes.status === 401) { window.location.replace('/'); return; }
+        if (fetchRes.status === 401) { window.location.replace(BASE_URL + '/'); return; }
         const res = await fetchRes.json();
 
         currentSongs = (res.status === "success") ? res.data : [];
