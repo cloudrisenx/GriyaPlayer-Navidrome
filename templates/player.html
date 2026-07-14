@@ -248,8 +248,8 @@
     <audio id="web-audio" preload="none"></audio>
 
     <script>
-        const STREAM_PORT = "{{ stream_port }}";
-        const BASE_URL = "{{ base_url }}";
+        window.STREAM_PORT = "{{ stream_port }}";
+        window.BASE_URL = "{{ base_url }}";
         function togglePanel(panelId) { document.getElementById(panelId).classList.toggle('open'); }
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('open');
